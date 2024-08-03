@@ -1,0 +1,43 @@
+from tkinter import * 
+from tkinter import messagebox
+from tkinter import filedialog
+from io import open 
+
+def info():
+    messagebox.showinfo("klk","Este programa te permitirá saber qué hora está viendo tu preciosa novia en cualquier parte del mundo")
+
+def guardar_como():
+    mensaje = text.get("1.0",END)
+    fichero = filedialog.asksaveasfile(title="Guardar texto", mode="w",defaultextension=".txt")
+    fichero.write(mensaje)
+    fichero.close()
+
+
+
+root = Tk()
+root.title
+#Menú interactivo 
+menubar = Menu(root)
+root.config(menu=menubar)
+
+#Menú archivo
+filemenu = Menu(menubar)
+filemenu.add_command(label="Guardar texto como",command = guardar_como)
+filemenu.add_command(label = "salir", command=root.quit)
+menubar.add_cascade(label="Archivo",menu = filemenu)
+
+
+#Menú ayuda
+helpmenu =Menu(menubar)
+helpmenu.add_command(label="acerca del programa", command = info)
+menubar.add_cascade(label="Ayuda", menu = helpmenu) 
+
+
+#cuadro de texto para poder escriir la hora o lo que quieras
+label_fin = Label(root, text="\nEscribe lo que quieras, una carta de amor a tu novia por ejemplo\n")
+label_fin.pack()
+text = Text(root)
+text.pack()
+text.config(width=30, height=15, selectbackground="yellow",bg="aqua")
+
+root.mainloop()
